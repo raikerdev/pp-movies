@@ -13,6 +13,7 @@ okhttp3 = "4.11.0"
 retrofit = "2.9.0"
 lifecycle = "2.7.0"
 recyclerView = "1.3.2"
+glide = "4.15.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -30,6 +31,9 @@ androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-co
 retrofit-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp3"}
 retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit"}
 retrofit-converter = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit"}
+
+glide-core = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
+glide-compiler = { group = "com.github.bumptech.glide", name = "compiler", version.ref = "glide" }
 
 [bundles]
 core = ["androidx-core-ktx", "androidx-constraintlayout", "androidx-activity", "androidx-appcompat", "material", "recyclerView", "lifecycle"]
