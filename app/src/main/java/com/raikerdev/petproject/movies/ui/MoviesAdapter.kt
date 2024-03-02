@@ -1,10 +1,12 @@
-package com.raikerdev.petproject.movies
+package com.raikerdev.petproject.movies.ui
 
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.raikerdev.petproject.movies.R
 import com.raikerdev.petproject.movies.databinding.ViewMovieBinding
+import com.raikerdev.petproject.movies.model.Movie
 import kotlin.properties.Delegates
 
 class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {

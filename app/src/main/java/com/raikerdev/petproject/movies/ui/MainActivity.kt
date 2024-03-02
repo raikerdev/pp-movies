@@ -1,4 +1,4 @@
-package com.raikerdev.petproject.movies
+package com.raikerdev.petproject.movies.ui
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
+import com.raikerdev.petproject.movies.R
 import com.raikerdev.petproject.movies.databinding.ActivityMainBinding
+import com.raikerdev.petproject.movies.model.RemoteConnection
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {

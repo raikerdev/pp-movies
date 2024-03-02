@@ -1,4 +1,4 @@
-package com.raikerdev.petproject.movies
+package com.raikerdev.petproject.movies.ui
 
 import android.content.Context
 import android.view.LayoutInflater

@@ -1,4 +1,4 @@
-package com.raikerdev.petproject.movies
+package com.raikerdev.petproject.movies.model
 
 import com.google.gson.annotations.SerializedName
 

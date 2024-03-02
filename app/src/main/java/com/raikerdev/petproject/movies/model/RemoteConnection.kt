@@ -1,4 +1,4 @@
-package com.raikerdev.petproject.movies
+package com.raikerdev.petproject.movies.model
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
