@@ -1,4 +1,4 @@
-package com.raikerdev.petproject.movies.ui
+package com.raikerdev.petproject.movies.ui.detail
 
 import android.content.Context
 import android.util.AttributeSet

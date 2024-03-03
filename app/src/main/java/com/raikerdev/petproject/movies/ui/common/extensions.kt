@@ -1,4 +1,4 @@
-package com.raikerdev.petproject.movies.ui
+package com.raikerdev.petproject.movies.ui.common
 
 import android.content.Intent
 import android.location.Address
@@ -13,11 +13,9 @@ import androidx.annotation.IntRange
 import androidx.annotation.LayoutRes
 import androidx.core.content.IntentCompat
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
-import kotlin.properties.Delegates
 
 
 fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = true): View =

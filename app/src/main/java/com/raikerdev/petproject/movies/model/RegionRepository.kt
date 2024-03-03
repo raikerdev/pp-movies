@@ -1,14 +1,10 @@
 package com.raikerdev.petproject.movies.model
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.location.Geocoder
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.location.LocationServices
-import com.raikerdev.petproject.movies.ui.getFromLocationCompat
-import kotlinx.coroutines.suspendCancellableCoroutine
-import kotlin.coroutines.resume
+import com.raikerdev.petproject.movies.ui.common.getFromLocationCompat
 
 class RegionRepository(activity: AppCompatActivity) {
 

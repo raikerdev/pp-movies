@@ -1,14 +1,15 @@
-package com.raikerdev.petproject.movies.ui
+package com.raikerdev.petproject.movies.ui.main
 
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.raikerdev.petproject.movies.R
 import com.raikerdev.petproject.movies.databinding.ViewMovieBinding
 import com.raikerdev.petproject.movies.model.Movie
-import kotlin.properties.Delegates
+import com.raikerdev.petproject.movies.ui.common.basicDiffUtil
+import com.raikerdev.petproject.movies.ui.common.inflate
+import com.raikerdev.petproject.movies.ui.common.loadUrl
 
 class MoviesAdapter(private val listener: (Movie) -> Unit) :
     ListAdapter<Movie, MoviesAdapter.ViewHolder>(basicDiffUtil { old, new -> old.id == new.id }) {

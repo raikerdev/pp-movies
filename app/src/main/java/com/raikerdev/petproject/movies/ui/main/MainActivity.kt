@@ -1,4 +1,4 @@
-package com.raikerdev.petproject.movies.ui
+package com.raikerdev.petproject.movies.ui.main
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import com.raikerdev.petproject.movies.R
 import com.raikerdev.petproject.movies.databinding.ActivityMainBinding
 import com.raikerdev.petproject.movies.model.MoviesRepository
+import com.raikerdev.petproject.movies.ui.detail.DetailActivity
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
