@@ -2,6 +2,7 @@ package com.raikerdev.petproject.movies.ui
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.location.Address
 import android.location.Geocoder
 import android.location.Location
@@ -38,7 +39,11 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
-    private val adapter = MoviesAdapter()
+    private val adapter = MoviesAdapter {
+        Intent(this, DetailActivity::class.java)
+            .apply { putExtra(DetailActivity.MOVIE, it) }
+            .let { startActivity(it) }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,6 +80,7 @@ class MainActivity : AppCompatActivity() {
         return fromLocation?.firstOrNull()?.countryCode ?: "US"
     }
 
+    @Suppress("DEPRECATION")
     private suspend fun Geocoder.getFromLocationCompat(
         @FloatRange(from = -90.0, to = 90.0) latitude: Double,
         @FloatRange(from = -180.0, to = 180.0) longitude: Double,

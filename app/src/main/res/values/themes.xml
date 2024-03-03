@@ -1,9 +1,20 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.PPMovies" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.PPMovies" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="colorSurface">@color/lightGray</item>
     </style>
 
     <style name="Theme.PPMovies" parent="Base.Theme.PPMovies" />
+
+    <style name="Theme.PPMovies.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="AppTheme.DarkOverlay" parent="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"/>
+
 </resources>
