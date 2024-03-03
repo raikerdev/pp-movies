@@ -15,33 +15,18 @@ class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        val binding = ActivityDetailBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        val binding = ActivityDetailBinding.inflate(layoutInflater).run {
+            setContentView(root)
 
-        intent.getParcelableExtraCompat<Movie>(MOVIE)?.run {
-            binding.movieDetailToolbar.title = title
+            val movie = intent.getParcelableExtraCompat<Movie>(MOVIE) ?: throw IllegalStateException()
 
-            val background = backdropPath ?: posterPath
-            binding.movieDetailImage.loadUrl("https://image.tmdb.org/t/p/w780$background")
+            movieDetailToolbar.title = movie.title
 
-            binding.movieDetailSummary.text = overview
+            val background = movie.backdropPath ?: movie.posterPath
+            movieDetailImage.loadUrl("https://image.tmdb.org/t/p/w780$background")
+            movieDetailSummary.text = movie.overview
 
-            binding.movieDetailInfo.text = buildSpannedString {
-                bold { append("Original language: ") }
-                appendLine(originalLanguage)
-
-                bold { append("Original title: ") }
-                appendLine(originalTitle)
-
-                bold { append("Release date: ") }
-                appendLine(releaseDate)
-
-                bold { append("Popularity: ") }
-                appendLine(popularity.toString())
-
-                bold { append("Vote Average: ") }
-                appendLine(voteAverage.toString())
-            }
+            movieDetailInfo.setMovie(movie)
         }
     }
 }
