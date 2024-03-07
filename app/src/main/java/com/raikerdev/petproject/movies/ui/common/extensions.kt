@@ -1,6 +1,5 @@
 package com.raikerdev.petproject.movies.ui.common
 
-import android.content.Intent
 import android.location.Address
 import android.location.Geocoder
 import android.os.Build
@@ -11,7 +10,6 @@ import android.widget.ImageView
 import androidx.annotation.FloatRange
 import androidx.annotation.IntRange
 import androidx.annotation.LayoutRes
-import androidx.core.content.IntentCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
