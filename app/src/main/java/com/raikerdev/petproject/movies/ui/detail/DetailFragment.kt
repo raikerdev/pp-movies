@@ -9,7 +9,6 @@ import androidx.navigation.fragment.navArgs
 import com.raikerdev.petproject.movies.R
 import com.raikerdev.petproject.movies.databinding.FragmentDetailBinding
 import com.raikerdev.petproject.movies.ui.common.launchAndCollect
-import com.raikerdev.petproject.movies.ui.common.loadUrl
 
 class DetailFragment : Fragment(R.layout.fragment_detail) {
 
@@ -23,15 +22,9 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
 
         binding.movieDetailToolbar.setNavigationOnClickListener { findNavController().popBackStack() }
 
-        viewLifecycleOwner.launchAndCollect(viewModel.state) { binding.updateUI(it) }
-    }
-
-    private fun FragmentDetailBinding.updateUI(state: DetailViewModel.UiState) {
-        val movie = state.movie
-        movieDetailToolbar.title = movie.title
-        movieDetailImage.loadUrl("https://image.tmdb.org/t/p/w780${movie.backdropPath ?: movie.posterPath}")
-        movieDetailSummary.text = movie.overview
-        movieDetailInfo.setMovie(movie)
+        viewLifecycleOwner.launchAndCollect(viewModel.state) {
+            binding.movie = it.movie
+        }
     }
 
 }
