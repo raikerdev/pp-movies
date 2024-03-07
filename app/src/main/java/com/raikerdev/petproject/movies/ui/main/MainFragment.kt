@@ -9,6 +9,9 @@ import com.raikerdev.petproject.movies.R
 import com.raikerdev.petproject.movies.databinding.FragmentMainBinding
 import com.raikerdev.petproject.movies.model.MoviesRepository
 import com.raikerdev.petproject.movies.ui.common.launchAndCollect
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.map
 
 class MainFragment : Fragment(R.layout.fragment_main) {
 
@@ -28,16 +31,20 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             recycler.adapter = adapter
         }
 
-        viewLifecycleOwner.launchAndCollect(viewModel.state) { binding.updateUI(it) }
+        with(viewModel.state) {
+            diff({ it.movies }) { adapter.submitList(it) }
+            diff({ it.loading }) { binding.progress.isVisible = it }
+        }
 
         mainState.requestLocationPermission { viewModel.onUiReady() }
 
     }
 
-    private fun FragmentMainBinding.updateUI(state: MainViewModel.UiState) {
-        progress.isVisible = state.loading
-        state.movies?.let(adapter::submitList)
+    private fun <T, U> Flow<T>.diff(mapF: (T) -> U, body: (U) -> Unit) {
+        viewLifecycleOwner.launchAndCollect(
+            flow = map(mapF).distinctUntilChanged(),
+            body = body
+        )
     }
-
 
 }
