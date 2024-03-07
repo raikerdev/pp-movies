@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.jetbrainsKotlinKapt)
     alias(libs.plugins.jetbrainsKotlinParcelize)
+    alias(libs.plugins.androidxNavigation)
 }
 
 android {
@@ -41,7 +42,7 @@ dependencies {
 
     implementation(libs.bundles.core)
     implementation(libs.bundles.lifecycle)
-
+    implementation(libs.bundles.navigation)
     implementation(libs.bundles.retrofit)
     implementation(libs.google.plaServices)
     implementation(libs.glide.core)

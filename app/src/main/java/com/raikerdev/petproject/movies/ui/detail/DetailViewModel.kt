@@ -1,7 +1,5 @@
 package com.raikerdev.petproject.movies.ui.detail
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.raikerdev.petproject.movies.model.Movie
