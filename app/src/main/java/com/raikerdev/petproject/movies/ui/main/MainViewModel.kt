@@ -5,9 +5,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.raikerdev.petproject.movies.model.Movie
 import com.raikerdev.petproject.movies.model.MoviesRepository
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
 class MainViewModel(
@@ -16,6 +18,9 @@ class MainViewModel(
 
     private val _state = MutableStateFlow(UiState())
     val state: StateFlow<UiState> = _state.asStateFlow()
+
+    private val _events = Channel<UiEvent>()
+    val events = _events.receiveAsFlow()
 
     init {
         refresh()
@@ -29,14 +34,19 @@ class MainViewModel(
     }
 
     fun onMovieClicked(movie: Movie) {
-        _state.value = _state.value.copy(navigateTo = movie)
+        viewModelScope.launch {
+            _events.send(UiEvent.NavigateTo(movie))
+        }
     }
 
     data class UiState(
         val loading: Boolean = false,
-        val movies: List<Movie>? = null,
-        val navigateTo: Movie? = null
+        val movies: List<Movie>? = null
     )
+
+    sealed interface UiEvent {
+        data class NavigateTo(val movie: Movie): UiEvent
+    }
 }
 
 @Suppress("UNCHECKED_CAST")

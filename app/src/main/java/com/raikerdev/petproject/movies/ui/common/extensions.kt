@@ -12,8 +12,14 @@ import androidx.annotation.FloatRange
 import androidx.annotation.IntRange
 import androidx.annotation.LayoutRes
 import androidx.core.content.IntentCompat
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.Glide
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
 
@@ -37,9 +43,6 @@ inline fun <T: Any> basicDiffUtil(
 
 }
 
-inline fun <reified T> Intent.getParcelableExtraCompat(name: String): T? =
-    IntentCompat.getParcelableExtra(this, name, T::class.java)
-
 @Suppress("DEPRECATION")
 suspend fun Geocoder.getFromLocationCompat(
     @FloatRange(from = -90.0, to = 90.0) latitude: Double,
@@ -52,5 +55,16 @@ suspend fun Geocoder.getFromLocationCompat(
         }
     } else {
         continuation.resume(getFromLocation(latitude, longitude, maxResults) ?: emptyList())
+    }
+}
+
+fun <T> LifecycleOwner.launchAndCollect(
+    flow: Flow<T>, state: Lifecycle.State = Lifecycle.State.STARTED,
+    body: (T) -> Unit
+) {
+    lifecycleScope.launch {
+        repeatOnLifecycle(state) {
+            flow.collect(body)
+        }
     }
 }

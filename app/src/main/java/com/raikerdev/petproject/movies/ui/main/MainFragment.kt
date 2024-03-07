@@ -3,20 +3,15 @@ package com.raikerdev.petproject.movies.ui.main
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.raikerdev.petproject.movies.R
 import com.raikerdev.petproject.movies.databinding.FragmentMainBinding
 import com.raikerdev.petproject.movies.model.Movie
 import com.raikerdev.petproject.movies.model.MoviesRepository
-import com.raikerdev.petproject.movies.ui.detail.DetailFragment
-import kotlinx.coroutines.launch
+import com.raikerdev.petproject.movies.ui.common.launchAndCollect
 
 class MainFragment : Fragment(R.layout.fragment_main) {
 
@@ -32,9 +27,10 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             recycler.adapter = adapter
         }
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.state.collect { binding.updateUI(it) }
+        viewLifecycleOwner.launchAndCollect(viewModel.state) { binding.updateUI(it) }
+        viewLifecycleOwner.launchAndCollect(viewModel.events) { event ->
+            when(event){
+                is MainViewModel.UiEvent.NavigateTo -> navigateTo(event.movie)
             }
         }
     }
@@ -42,7 +38,6 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     private fun FragmentMainBinding.updateUI(state: MainViewModel.UiState) {
         progress.isVisible = state.loading
         state.movies?.let(adapter::submitList)
-        state.navigateTo?.let(::navigateTo)
     }
 
     private fun navigateTo(movie: Movie) {
