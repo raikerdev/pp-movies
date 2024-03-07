@@ -8,11 +8,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.raikerdev.petproject.movies.R
 import com.raikerdev.petproject.movies.databinding.ActivityMainBinding
 import com.raikerdev.petproject.movies.model.Movie
 import com.raikerdev.petproject.movies.model.MoviesRepository
 import com.raikerdev.petproject.movies.ui.detail.DetailActivity
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,7 +36,11 @@ class MainActivity : AppCompatActivity() {
             insets
         }
         binding.recycler.adapter = adapter
-        viewModel.state.observe(this, ::updateUI)
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.state.collect(::updateUI)
+            }
+        }
     }
 
     private fun updateUI(state: MainViewModel.UiState) {

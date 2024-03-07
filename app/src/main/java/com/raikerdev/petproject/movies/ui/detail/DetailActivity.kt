@@ -4,9 +4,14 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.raikerdev.petproject.movies.databinding.ActivityDetailBinding
 import com.raikerdev.petproject.movies.ui.common.getParcelableExtraCompat
 import com.raikerdev.petproject.movies.ui.common.loadUrl
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 class DetailActivity : AppCompatActivity() {
 
@@ -23,7 +28,11 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel.state.observe(this, ::updateUI)
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.state.collect(::updateUI)
+            }
+        }
     }
 
     private fun updateUI(state: DetailViewModel.UiState) = with(binding) {
