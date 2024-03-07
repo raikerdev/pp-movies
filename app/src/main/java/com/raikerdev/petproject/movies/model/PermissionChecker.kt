@@ -1,23 +1,11 @@
 package com.raikerdev.petproject.movies.model
 
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
-import kotlinx.coroutines.suspendCancellableCoroutine
-import kotlin.coroutines.resume
+import android.app.Application
+import android.content.pm.PackageManager
+import androidx.core.content.ContextCompat
 
-class PermissionChecker(activity: AppCompatActivity, private val permission: String) {
+class PermissionChecker(private val application: Application, private val permission: String) {
 
-    private var onRequest: (Boolean) -> Unit = {}
-    private val launcher = activity.registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
-        onRequest(isGranted)
-    }
-
-    suspend fun request(): Boolean =
-        suspendCancellableCoroutine { continuation ->
-            onRequest = {
-                continuation.resume(it)
-            }
-            launcher.launch(permission)
-        }
+    fun check(): Boolean = ContextCompat.checkSelfPermission(application, permission) == PackageManager.PERMISSION_GRANTED
 
 }
