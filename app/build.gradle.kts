@@ -40,6 +40,8 @@ android {
 dependencies {
 
     implementation(libs.bundles.core)
+    implementation(libs.bundles.lifecycle)
+
     implementation(libs.bundles.retrofit)
     implementation(libs.google.plaServices)
     implementation(libs.glide.core)

@@ -2,19 +2,19 @@ package com.raikerdev.petproject.movies.ui.detail
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.raikerdev.petproject.movies.databinding.ActivityDetailBinding
-import com.raikerdev.petproject.movies.model.Movie
 import com.raikerdev.petproject.movies.ui.common.getParcelableExtraCompat
 import com.raikerdev.petproject.movies.ui.common.loadUrl
 
-class DetailActivity : AppCompatActivity(), DetailPresenter.View {
+class DetailActivity : AppCompatActivity() {
 
     companion object {
         const val MOVIE = "DetailActivity:movie"
     }
 
-    private val presenter = DetailPresenter()
+    private val viewModel: DetailViewModel by viewModels { DetailViewModelFactory(requireNotNull(intent.getParcelableExtraCompat(MOVIE))) }
     private lateinit var binding: ActivityDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,16 +23,11 @@ class DetailActivity : AppCompatActivity(), DetailPresenter.View {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val movie: Movie = requireNotNull(intent.getParcelableExtraCompat(MOVIE))
-        presenter.onCreate(this@DetailActivity, movie)
+        viewModel.state.observe(this, ::updateUI)
     }
 
-    override fun onDestroy() {
-        presenter.onDestroy()
-        super.onDestroy()
-    }
-
-    override fun updateUI(movie: Movie) = with(binding) {
+    private fun updateUI(state: DetailViewModel.UiState) = with(binding) {
+        val movie = state.movie
         movieDetailToolbar.title = movie.title
         movieDetailImage.loadUrl("https://image.tmdb.org/t/p/w780${movie.backdropPath ?: movie.posterPath}")
         movieDetailSummary.text = movie.overview

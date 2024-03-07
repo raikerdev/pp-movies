@@ -2,6 +2,7 @@ package com.raikerdev.petproject.movies.ui.detail
 
 import com.raikerdev.petproject.movies.model.Movie
 
+@Suppress("unused")
 class DetailPresenter {
 
     interface View {

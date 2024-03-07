@@ -5,6 +5,7 @@ import com.raikerdev.petproject.movies.model.MoviesRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
+@Suppress("unused")
 class MainPresenter(
     private val moviesRepository: MoviesRepository,
     private val scope: CoroutineScope

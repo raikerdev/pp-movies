@@ -19,11 +19,14 @@ playServices = "21.1.0"
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
-androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+androidx-activity = { group = "androidx.activity", name = "activity-ktx", version.ref = "activity" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+androidx-lifecycle = {group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
+androidx-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+androidx-recyclerView = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerView"}
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
-recyclerView = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerView"}
-lifecycle = {group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
+
+
 
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
@@ -39,7 +42,8 @@ glide-compiler = { group = "com.github.bumptech.glide", name = "compiler", versi
 google-plaServices = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServices" }
 
 [bundles]
-core = ["androidx-core-ktx", "androidx-constraintlayout", "androidx-activity", "androidx-appcompat", "material", "recyclerView", "lifecycle"]
+core = ["androidx-core-ktx", "androidx-constraintlayout", "androidx-activity", "androidx-appcompat", "material", "androidx-recyclerView"]
+lifecycle = ["androidx-lifecycle", "androidx-viewmodel"]
 retrofit  = ["retrofit-interceptor", "retrofit-core", "retrofit-converter"]
 
 [plugins]
