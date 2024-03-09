@@ -9,8 +9,8 @@ import androidx.navigation.fragment.navArgs
 import com.raikerdev.petproject.movies.R
 import com.raikerdev.petproject.movies.databinding.FragmentDetailBinding
 import com.raikerdev.petproject.movies.data.MoviesRepository
-import com.raikerdev.petproject.movies.domain.FindMovieUseCase
-import com.raikerdev.petproject.movies.domain.SwitchMovieFavoriteUseCase
+import com.raikerdev.petproject.movies.usecases.FindMovieUseCase
+import com.raikerdev.petproject.movies.usecases.SwitchMovieFavoriteUseCase
 import com.raikerdev.petproject.movies.ui.common.app
 import com.raikerdev.petproject.movies.ui.common.launchAndCollect
 

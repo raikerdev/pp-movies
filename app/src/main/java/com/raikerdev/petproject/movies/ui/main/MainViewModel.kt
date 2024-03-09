@@ -6,8 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.raikerdev.petproject.movies.data.Error
 import com.raikerdev.petproject.movies.data.database.Movie
 import com.raikerdev.petproject.movies.data.toError
-import com.raikerdev.petproject.movies.domain.GetPopularMoviesUseCase
-import com.raikerdev.petproject.movies.domain.RequestPopularMoviesUseCase
+import com.raikerdev.petproject.movies.usecases.GetPopularMoviesUseCase
+import com.raikerdev.petproject.movies.usecases.RequestPopularMoviesUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

@@ -7,8 +7,8 @@ import androidx.fragment.app.viewModels
 import com.raikerdev.petproject.movies.R
 import com.raikerdev.petproject.movies.databinding.FragmentMainBinding
 import com.raikerdev.petproject.movies.data.MoviesRepository
-import com.raikerdev.petproject.movies.domain.GetPopularMoviesUseCase
-import com.raikerdev.petproject.movies.domain.RequestPopularMoviesUseCase
+import com.raikerdev.petproject.movies.usecases.GetPopularMoviesUseCase
+import com.raikerdev.petproject.movies.usecases.RequestPopularMoviesUseCase
 import com.raikerdev.petproject.movies.ui.common.app
 import com.raikerdev.petproject.movies.ui.common.launchAndCollect
 

@@ -1,4 +1,4 @@
-package com.raikerdev.petproject.movies.domain
+package com.raikerdev.petproject.movies.usecases
 
 import com.raikerdev.petproject.movies.data.MoviesRepository
 import com.raikerdev.petproject.movies.data.database.Movie
