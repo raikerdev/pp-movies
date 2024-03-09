@@ -2,9 +2,11 @@ package com.raikerdev.petproject.movies.data
 
 import com.raikerdev.petproject.movies.App
 import com.raikerdev.petproject.movies.R
-
 import com.raikerdev.petproject.movies.data.datasource.MovieLocalDataSource
 import com.raikerdev.petproject.movies.data.datasource.MovieRemoteDataSource
+
+import com.raikerdev.petproject.movies.framework.datasource.MovieRoomDataSource
+import com.raikerdev.petproject.movies.framework.datasource.MovieServerDataSource
 import com.raikerdev.petproject.movies.domain.Movie
 import kotlinx.coroutines.flow.Flow
 
@@ -12,8 +14,8 @@ import kotlinx.coroutines.flow.Flow
 class MoviesRepository(application: App) {
 
     private val regionRepository = RegionRepository(application)
-    private val localDataSource = MovieLocalDataSource(application.db.movieDao())
-    private val remoteDataSource = MovieRemoteDataSource(
+    private val localDataSource: MovieLocalDataSource = MovieRoomDataSource(application.db.movieDao())
+    private val remoteDataSource: MovieRemoteDataSource = MovieServerDataSource(
         application.getString(R.string.api_key)
     )
 

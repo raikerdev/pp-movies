@@ -1,4 +1,4 @@
-package com.raikerdev.petproject.movies.data.database
+package com.raikerdev.petproject.movies.framework.database
 
 import androidx.room.Dao
 import androidx.room.Insert
