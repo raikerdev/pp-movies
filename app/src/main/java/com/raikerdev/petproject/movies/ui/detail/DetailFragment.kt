@@ -25,6 +25,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         val binding = FragmentDetailBinding.bind(view)
 
         binding.movieDetailToolbar.setNavigationOnClickListener { findNavController().popBackStack() }
+        binding.movieDetailFavorite.setOnClickListener { viewModel.onFavoriteClicked() }
 
         viewLifecycleOwner.launchAndCollect(viewModel.state) {
             binding.movie = it.movie
