@@ -2,7 +2,7 @@ package com.raikerdev.petproject.movies.ui.main
 
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.raikerdev.petproject.movies.data.database.Movie
+import com.raikerdev.petproject.movies.domain.Movie
 
 @BindingAdapter("movies")
 fun RecyclerView.setItems(movies: List<Movie>?) {

@@ -2,9 +2,10 @@ package com.raikerdev.petproject.movies.data
 
 import com.raikerdev.petproject.movies.App
 import com.raikerdev.petproject.movies.R
-import com.raikerdev.petproject.movies.data.database.Movie
+
 import com.raikerdev.petproject.movies.data.datasource.MovieLocalDataSource
 import com.raikerdev.petproject.movies.data.datasource.MovieRemoteDataSource
+import com.raikerdev.petproject.movies.domain.Movie
 import kotlinx.coroutines.flow.Flow
 
 
@@ -23,7 +24,7 @@ class MoviesRepository(application: App) {
     suspend fun requestPopularMovies(): Error? = tryCall {
         if (localDataSource.isEmpty()) {
             val movies = remoteDataSource.findPopularMovies(regionRepository.findLastRegion())
-            localDataSource.save(movies.results.toLocalModel())
+            localDataSource.save(movies)
         }
     }
 
@@ -33,22 +34,3 @@ class MoviesRepository(application: App) {
     }
 
 }
-
-private fun List<RemoteMovie>.toLocalModel(): List<Movie> = map {
-    with(it) {
-        Movie(
-            id,
-            title,
-            overview,
-            releaseDate,
-            posterPath,
-            backdropPath ?: "",
-            originalLanguage,
-            originalTitle,
-            popularity,
-            voteAverage,
-            false
-        )
-    }
-}
-

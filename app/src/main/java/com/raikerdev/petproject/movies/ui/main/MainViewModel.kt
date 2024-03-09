@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.raikerdev.petproject.movies.data.Error
-import com.raikerdev.petproject.movies.data.database.Movie
 import com.raikerdev.petproject.movies.data.toError
+import com.raikerdev.petproject.movies.domain.Movie
 import com.raikerdev.petproject.movies.usecases.GetPopularMoviesUseCase
 import com.raikerdev.petproject.movies.usecases.RequestPopularMoviesUseCase
 import kotlinx.coroutines.flow.MutableStateFlow

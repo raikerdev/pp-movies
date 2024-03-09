@@ -1,7 +1,7 @@
 package com.raikerdev.petproject.movies.usecases
 
 import com.raikerdev.petproject.movies.data.MoviesRepository
-import com.raikerdev.petproject.movies.data.database.Movie
+import com.raikerdev.petproject.movies.domain.Movie
 import kotlinx.coroutines.flow.Flow
 
 class FindMovieUseCase(private val repository: MoviesRepository) {

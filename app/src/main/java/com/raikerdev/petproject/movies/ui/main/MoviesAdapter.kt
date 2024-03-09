@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.raikerdev.petproject.movies.R
 import com.raikerdev.petproject.movies.databinding.ViewMovieBinding
-import com.raikerdev.petproject.movies.data.database.Movie
+import com.raikerdev.petproject.movies.domain.Movie
 import com.raikerdev.petproject.movies.ui.common.basicDiffUtil
 import com.raikerdev.petproject.movies.ui.common.inflate
 

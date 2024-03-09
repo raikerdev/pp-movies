@@ -3,7 +3,7 @@ package com.raikerdev.petproject.movies.ui.detail
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.raikerdev.petproject.movies.data.database.Movie
+import com.raikerdev.petproject.movies.domain.Movie
 import com.raikerdev.petproject.movies.usecases.FindMovieUseCase
 import com.raikerdev.petproject.movies.usecases.SwitchMovieFavoriteUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
