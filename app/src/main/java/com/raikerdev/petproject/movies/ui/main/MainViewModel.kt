@@ -3,12 +3,16 @@ package com.raikerdev.petproject.movies.ui.main
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.raikerdev.petproject.movies.model.Error
 
 import com.raikerdev.petproject.movies.model.MoviesRepository
 import com.raikerdev.petproject.movies.model.database.Movie
+import com.raikerdev.petproject.movies.model.toError
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class MainViewModel(
@@ -20,23 +24,23 @@ class MainViewModel(
 
     init {
         viewModelScope.launch {
-            moviesRepository.popularMovies.collect {movies ->
-                _state.value = UiState(movies = movies)
-
-            }
+            moviesRepository.popularMovies
+                .catch { cause -> _state.update { it.copy(error = cause.toError()) } }
+                .collect { movies -> _state.update { UiState(movies = movies) } }
         }
     }
 
     fun onUiReady() {
         viewModelScope.launch {
-            _state.value = UiState(loading = true)
-            moviesRepository.requestPopularMovies()
+            val error = moviesRepository.requestPopularMovies()
+            _state.update { it.copy(error = error) }
         }
     }
 
     data class UiState(
         val loading: Boolean = false,
-        val movies: List<Movie>? = null
+        val movies: List<Movie>? = null,
+        val error: Error? = null
     )
 }
 

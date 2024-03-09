@@ -31,10 +31,13 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         viewLifecycleOwner.launchAndCollect(viewModel.state) {
             binding.loading = it.loading
             binding.movies = it.movies
+            binding.error = it.error?.let(mainState::errorToString)
         }
 
         mainState.requestLocationPermission { viewModel.onUiReady() }
 
     }
+
+
 
 }

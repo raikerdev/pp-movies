@@ -46,6 +46,7 @@ dependencies {
     implementation(libs.bundles.retrofit)
     implementation(libs.google.plaServices)
     implementation(libs.glide.core)
+    implementation(libs.arrow.core)
     implementation(libs.bundles.room)
     //noinspection KaptUsageInsteadOfKsp
     kapt(libs.bundles.compiler)

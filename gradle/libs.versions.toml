@@ -17,6 +17,7 @@ glide = "4.15.1"
 playServices = "21.2.0"
 navigation = "2.7.7"
 room = "2.6.1"
+arrow = "1.1.5"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -48,6 +49,8 @@ glide-core = { group = "com.github.bumptech.glide", name = "glide", version.ref 
 glide-compiler = { group = "com.github.bumptech.glide", name = "compiler", version.ref = "glide" }
 
 google-plaServices = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServices" }
+
+arrow-core = { group = "io.arrow-kt", name = "arrow-core", version.ref = "arrow" }
 
 [bundles]
 core = ["androidx-core-ktx", "androidx-constraintlayout", "androidx-activity", "androidx-activity-ktx", "androidx-appcompat", "material", "androidx-recyclerView"]
