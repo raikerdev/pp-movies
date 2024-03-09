@@ -46,8 +46,9 @@ dependencies {
     implementation(libs.bundles.retrofit)
     implementation(libs.google.plaServices)
     implementation(libs.glide.core)
+    implementation(libs.bundles.room)
     //noinspection KaptUsageInsteadOfKsp
-    kapt(libs.glide.compiler)
+    kapt(libs.bundles.compiler)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
