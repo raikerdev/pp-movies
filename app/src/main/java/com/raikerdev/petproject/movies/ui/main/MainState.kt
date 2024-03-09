@@ -7,8 +7,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.raikerdev.petproject.movies.R
-import com.raikerdev.petproject.movies.model.Error
-import com.raikerdev.petproject.movies.model.database.Movie
+import com.raikerdev.petproject.movies.data.Error
+import com.raikerdev.petproject.movies.data.database.Movie
 import com.raikerdev.petproject.movies.ui.common.PermissionRequester
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch

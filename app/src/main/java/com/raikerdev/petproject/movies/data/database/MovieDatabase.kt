@@ -1,4 +1,4 @@
-package com.raikerdev.petproject.movies.model.database
+package com.raikerdev.petproject.movies.data.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

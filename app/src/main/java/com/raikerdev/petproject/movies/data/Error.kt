@@ -1,4 +1,4 @@
-package com.raikerdev.petproject.movies.model
+package com.raikerdev.petproject.movies.data
 
 import retrofit2.HttpException
 import java.io.IOException
@@ -6,7 +6,7 @@ import java.lang.Exception
 
 sealed interface Error {
     class Server(val code: Int) : Error
-    object Connectivity : Error
+    data object Connectivity : Error
     class Unknown(val message: String) : Error
 }
 

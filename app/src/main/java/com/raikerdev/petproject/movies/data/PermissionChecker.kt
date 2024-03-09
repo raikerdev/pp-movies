@@ -1,4 +1,4 @@
-package com.raikerdev.petproject.movies.model
+package com.raikerdev.petproject.movies.data
 
 import android.app.Application
 import android.content.pm.PackageManager
@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat
 
 class PermissionChecker(private val application: Application, private val permission: String) {
 
-    fun check(): Boolean = ContextCompat.checkSelfPermission(application, permission) == PackageManager.PERMISSION_GRANTED
+    fun check(): Boolean =
+        ContextCompat.checkSelfPermission(application, permission) == PackageManager.PERMISSION_GRANTED
 
 }

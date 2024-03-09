@@ -1,4 +1,4 @@
-package com.raikerdev.petproject.movies.model
+package com.raikerdev.petproject.movies.data
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -20,4 +20,5 @@ object RemoteConnection {
         .build()
 
     val service: RemoteService = builder.create()
+
 }

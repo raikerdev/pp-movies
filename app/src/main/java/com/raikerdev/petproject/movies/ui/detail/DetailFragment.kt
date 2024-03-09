@@ -8,7 +8,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.raikerdev.petproject.movies.R
 import com.raikerdev.petproject.movies.databinding.FragmentDetailBinding
-import com.raikerdev.petproject.movies.model.MoviesRepository
+import com.raikerdev.petproject.movies.data.MoviesRepository
+import com.raikerdev.petproject.movies.domain.FindMovieUseCase
+import com.raikerdev.petproject.movies.domain.SwitchMovieFavoriteUseCase
 import com.raikerdev.petproject.movies.ui.common.app
 import com.raikerdev.petproject.movies.ui.common.launchAndCollect
 
@@ -17,7 +19,12 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     private val safeArgs: DetailFragmentArgs by navArgs()
 
     private val viewModel: DetailViewModel by viewModels {
-        DetailViewModelFactory(safeArgs.movieId, MoviesRepository(requireActivity().app))
+        val repository = MoviesRepository(requireActivity().app)
+        DetailViewModelFactory(
+            safeArgs.movieId,
+            FindMovieUseCase(repository),
+            SwitchMovieFavoriteUseCase(repository)
+        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

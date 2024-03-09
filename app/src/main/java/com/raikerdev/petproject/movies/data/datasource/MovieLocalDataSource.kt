@@ -1,7 +1,7 @@
-package com.raikerdev.petproject.movies.model.datasource
+package com.raikerdev.petproject.movies.data.datasource
 
-import com.raikerdev.petproject.movies.model.database.Movie
-import com.raikerdev.petproject.movies.model.database.MovieDao
+import com.raikerdev.petproject.movies.data.database.Movie
+import com.raikerdev.petproject.movies.data.database.MovieDao
 import kotlinx.coroutines.flow.Flow
 
 class MovieLocalDataSource(private val movieDao: MovieDao) {

@@ -6,14 +6,20 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.raikerdev.petproject.movies.R
 import com.raikerdev.petproject.movies.databinding.FragmentMainBinding
-import com.raikerdev.petproject.movies.model.MoviesRepository
+import com.raikerdev.petproject.movies.data.MoviesRepository
+import com.raikerdev.petproject.movies.domain.GetPopularMoviesUseCase
+import com.raikerdev.petproject.movies.domain.RequestPopularMoviesUseCase
 import com.raikerdev.petproject.movies.ui.common.app
 import com.raikerdev.petproject.movies.ui.common.launchAndCollect
 
 class MainFragment : Fragment(R.layout.fragment_main) {
 
     private val viewModel: MainViewModel by viewModels {
-        MainViewModelFactory(MoviesRepository(requireActivity().app))
+        val repository = MoviesRepository(requireActivity().app)
+        MainViewModelFactory(
+            GetPopularMoviesUseCase(repository),
+            RequestPopularMoviesUseCase(repository)
+        )
     }
 
     private val adapter = MoviesAdapter { mainState.onMovieClicked(it) }

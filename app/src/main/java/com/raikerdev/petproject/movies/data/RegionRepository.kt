@@ -1,4 +1,4 @@
-package com.raikerdev.petproject.movies.model
+package com.raikerdev.petproject.movies.data
 
 import android.Manifest
 import android.app.Application
@@ -28,4 +28,5 @@ class RegionRepository(application: Application) {
         }
         return addresses?.firstOrNull()?.countryCode ?: DEFAULT_REGION
     }
+
 }

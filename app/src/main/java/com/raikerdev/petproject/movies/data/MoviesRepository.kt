@@ -1,10 +1,10 @@
-package com.raikerdev.petproject.movies.model
+package com.raikerdev.petproject.movies.data
 
 import com.raikerdev.petproject.movies.App
 import com.raikerdev.petproject.movies.R
-import com.raikerdev.petproject.movies.model.database.Movie
-import com.raikerdev.petproject.movies.model.datasource.MovieLocalDataSource
-import com.raikerdev.petproject.movies.model.datasource.MovieRemoteDataSource
+import com.raikerdev.petproject.movies.data.database.Movie
+import com.raikerdev.petproject.movies.data.datasource.MovieLocalDataSource
+import com.raikerdev.petproject.movies.data.datasource.MovieRemoteDataSource
 import kotlinx.coroutines.flow.Flow
 
 

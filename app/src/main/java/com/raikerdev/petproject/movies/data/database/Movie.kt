@@ -1,4 +1,4 @@
-package com.raikerdev.petproject.movies.model.database
+package com.raikerdev.petproject.movies.data.database
 
 import android.os.Parcelable
 import androidx.room.Entity

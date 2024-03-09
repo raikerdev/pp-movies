@@ -1,6 +1,6 @@
-package com.raikerdev.petproject.movies.model.datasource
+package com.raikerdev.petproject.movies.data.datasource
 
-import com.raikerdev.petproject.movies.model.RemoteConnection
+import com.raikerdev.petproject.movies.data.RemoteConnection
 
 class MovieRemoteDataSource(private val apiKey: String) {
 
