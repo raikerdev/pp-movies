@@ -5,8 +5,8 @@ import com.raikerdev.petproject.movies.R
 import com.raikerdev.petproject.movies.model.database.Movie
 import com.raikerdev.petproject.movies.model.datasource.MovieLocalDataSource
 import com.raikerdev.petproject.movies.model.datasource.MovieRemoteDataSource
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.flow.Flow
+
 
 class MoviesRepository(application: App) {
 
@@ -18,7 +18,9 @@ class MoviesRepository(application: App) {
 
     val popularMovies = localDataSource.movies
 
-    suspend fun requestPopularMovies() = withContext(Dispatchers.IO) {
+    fun findById(id: Int): Flow<Movie> = localDataSource.findById(id)
+
+    suspend fun requestPopularMovies() {
         if (localDataSource.isEmpty()) {
             val movies = remoteDataSource.findPopularMovies()
             localDataSource.save(movies.results.toLocalModel())
