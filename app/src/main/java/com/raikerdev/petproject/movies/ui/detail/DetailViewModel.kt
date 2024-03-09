@@ -2,7 +2,7 @@ package com.raikerdev.petproject.movies.ui.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.raikerdev.petproject.movies.model.Movie
+import com.raikerdev.petproject.movies.model.database.Movie
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

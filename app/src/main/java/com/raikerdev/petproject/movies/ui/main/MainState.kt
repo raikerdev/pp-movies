@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.raikerdev.petproject.movies.model.Movie
+import com.raikerdev.petproject.movies.model.database.Movie
 import com.raikerdev.petproject.movies.ui.common.PermissionRequester
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -13,7 +13,8 @@ import kotlinx.coroutines.launch
 fun Fragment.buildMainState(
     scope: CoroutineScope = viewLifecycleOwner.lifecycleScope,
     navController: NavController = findNavController(),
-    locationPermissionRequester: PermissionRequester = PermissionRequester(this, Manifest.permission.ACCESS_COARSE_LOCATION),
+    locationPermissionRequester: PermissionRequester =
+        PermissionRequester(this, Manifest.permission.ACCESS_COARSE_LOCATION),
 ) = MainState(scope, navController, locationPermissionRequester)
 
 class MainState(
