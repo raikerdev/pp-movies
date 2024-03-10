@@ -1,4 +1,4 @@
-package com.raikerdev.petproject.movies.framework.datasource
+package com.raikerdev.petproject.movies.framework
 
 import android.annotation.SuppressLint
 import android.app.Application

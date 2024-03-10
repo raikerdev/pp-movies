@@ -3,8 +3,8 @@ package com.raikerdev.petproject.movies.ui.main
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.raikerdev.petproject.movies.data.Error
-import com.raikerdev.petproject.movies.data.toError
+import com.raikerdev.petproject.movies.domain.Error
+import com.raikerdev.petproject.movies.domain.toError
 import com.raikerdev.petproject.movies.domain.Movie
 import com.raikerdev.petproject.movies.usecases.GetPopularMoviesUseCase
 import com.raikerdev.petproject.movies.usecases.RequestPopularMoviesUseCase

@@ -1,8 +1,6 @@
-package com.raikerdev.petproject.movies.framework.datasource
+package com.raikerdev.petproject.movies.framework.database
 
 import com.raikerdev.petproject.movies.data.datasource.MovieLocalDataSource
-import com.raikerdev.petproject.movies.framework.database.DbMovie
-import com.raikerdev.petproject.movies.framework.database.MovieDao
 import com.raikerdev.petproject.movies.domain.Movie
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

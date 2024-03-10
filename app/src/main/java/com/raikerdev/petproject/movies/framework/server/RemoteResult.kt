@@ -1,4 +1,4 @@
-package com.raikerdev.petproject.movies.data
+package com.raikerdev.petproject.movies.framework.server
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

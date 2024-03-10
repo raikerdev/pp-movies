@@ -1,7 +1,5 @@
-package com.raikerdev.petproject.movies.framework.datasource
+package com.raikerdev.petproject.movies.framework.server
 
-import com.raikerdev.petproject.movies.data.RemoteConnection
-import com.raikerdev.petproject.movies.data.RemoteMovie
 import com.raikerdev.petproject.movies.data.datasource.MovieRemoteDataSource
 import com.raikerdev.petproject.movies.domain.Movie
 

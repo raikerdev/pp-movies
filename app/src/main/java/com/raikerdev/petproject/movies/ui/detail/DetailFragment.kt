@@ -11,9 +11,9 @@ import com.raikerdev.petproject.movies.databinding.FragmentDetailBinding
 import com.raikerdev.petproject.movies.data.MoviesRepository
 import com.raikerdev.petproject.movies.data.RegionRepository
 import com.raikerdev.petproject.movies.framework.AndroidPermissionChecker
-import com.raikerdev.petproject.movies.framework.datasource.MovieRoomDataSource
-import com.raikerdev.petproject.movies.framework.datasource.MovieServerDataSource
-import com.raikerdev.petproject.movies.framework.datasource.PlayServicesLocationDataSource
+import com.raikerdev.petproject.movies.framework.database.MovieRoomDataSource
+import com.raikerdev.petproject.movies.framework.server.MovieServerDataSource
+import com.raikerdev.petproject.movies.framework.PlayServicesLocationDataSource
 import com.raikerdev.petproject.movies.usecases.FindMovieUseCase
 import com.raikerdev.petproject.movies.usecases.SwitchMovieFavoriteUseCase
 import com.raikerdev.petproject.movies.ui.common.app

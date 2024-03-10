@@ -1,4 +1,4 @@
-package com.raikerdev.petproject.movies.data
+package com.raikerdev.petproject.movies.framework.server
 
 import retrofit2.http.GET
 import retrofit2.http.Query

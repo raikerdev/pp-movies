@@ -7,7 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.raikerdev.petproject.movies.R
-import com.raikerdev.petproject.movies.data.Error
+import com.raikerdev.petproject.movies.domain.Error
 import com.raikerdev.petproject.movies.domain.Movie
 import com.raikerdev.petproject.movies.ui.common.PermissionRequester
 import kotlinx.coroutines.CoroutineScope
