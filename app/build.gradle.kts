@@ -51,6 +51,7 @@ dependencies {
     implementation(libs.glide.core)
     implementation(libs.arrow.core)
     implementation(libs.bundles.room)
+    implementation(libs.koin)
     //noinspection KaptUsageInsteadOfKsp
     kapt(libs.bundles.compiler)
 

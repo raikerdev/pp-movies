@@ -20,6 +20,7 @@ room = "2.6.1"
 arrow = "1.1.5"
 jetbrainsKotlinJvm = "1.9.0"
 coroutines = "1.7.3"
+koin = "3.4.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -53,6 +54,8 @@ google-plaServices = { group = "com.google.android.gms", name = "play-services-l
 
 kotlinx-coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
 arrow-core = { group = "io.arrow-kt", name = "arrow-core", version.ref = "arrow" }
+
+koin = { group = "io.insert-koin", name = "koin-android", version.ref = "koin"}
 
 [bundles]
 core = ["androidx-core-ktx", "androidx-constraintlayout", "androidx-activity", "androidx-activity-ktx", "androidx-appcompat", "material", "androidx-recyclerView"]
