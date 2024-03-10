@@ -7,6 +7,11 @@ import androidx.fragment.app.viewModels
 import com.raikerdev.petproject.movies.R
 import com.raikerdev.petproject.movies.databinding.FragmentMainBinding
 import com.raikerdev.petproject.movies.data.MoviesRepository
+import com.raikerdev.petproject.movies.data.RegionRepository
+import com.raikerdev.petproject.movies.framework.AndroidPermissionChecker
+import com.raikerdev.petproject.movies.framework.datasource.MovieRoomDataSource
+import com.raikerdev.petproject.movies.framework.datasource.MovieServerDataSource
+import com.raikerdev.petproject.movies.framework.datasource.PlayServicesLocationDataSource
 import com.raikerdev.petproject.movies.usecases.GetPopularMoviesUseCase
 import com.raikerdev.petproject.movies.usecases.RequestPopularMoviesUseCase
 import com.raikerdev.petproject.movies.ui.common.app
@@ -15,7 +20,14 @@ import com.raikerdev.petproject.movies.ui.common.launchAndCollect
 class MainFragment : Fragment(R.layout.fragment_main) {
 
     private val viewModel: MainViewModel by viewModels {
-        val repository = MoviesRepository(requireActivity().app)
+        val application = requireActivity().app
+        val regionRepository = RegionRepository(
+            PlayServicesLocationDataSource(application),
+            AndroidPermissionChecker(application)
+        )
+        val localDataSource = MovieRoomDataSource(application.db.movieDao())
+        val remoteDataSource = MovieServerDataSource(getString(R.string.api_key))
+        val repository = MoviesRepository(regionRepository, localDataSource, remoteDataSource)
         MainViewModelFactory(
             GetPopularMoviesUseCase(repository),
             RequestPopularMoviesUseCase(repository)

@@ -9,6 +9,11 @@ import androidx.navigation.fragment.navArgs
 import com.raikerdev.petproject.movies.R
 import com.raikerdev.petproject.movies.databinding.FragmentDetailBinding
 import com.raikerdev.petproject.movies.data.MoviesRepository
+import com.raikerdev.petproject.movies.data.RegionRepository
+import com.raikerdev.petproject.movies.framework.AndroidPermissionChecker
+import com.raikerdev.petproject.movies.framework.datasource.MovieRoomDataSource
+import com.raikerdev.petproject.movies.framework.datasource.MovieServerDataSource
+import com.raikerdev.petproject.movies.framework.datasource.PlayServicesLocationDataSource
 import com.raikerdev.petproject.movies.usecases.FindMovieUseCase
 import com.raikerdev.petproject.movies.usecases.SwitchMovieFavoriteUseCase
 import com.raikerdev.petproject.movies.ui.common.app
@@ -19,7 +24,14 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     private val safeArgs: DetailFragmentArgs by navArgs()
 
     private val viewModel: DetailViewModel by viewModels {
-        val repository = MoviesRepository(requireActivity().app)
+        val application = requireActivity().app
+        val regionRepository = RegionRepository(
+            PlayServicesLocationDataSource(application),
+            AndroidPermissionChecker(application)
+        )
+        val localDataSource = MovieRoomDataSource(application.db.movieDao())
+        val remoteDataSource = MovieServerDataSource(getString(R.string.api_key))
+        val repository = MoviesRepository(regionRepository, localDataSource, remoteDataSource)
         DetailViewModelFactory(
             safeArgs.movieId,
             FindMovieUseCase(repository),
