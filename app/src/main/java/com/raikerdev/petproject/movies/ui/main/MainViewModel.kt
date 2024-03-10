@@ -3,11 +3,9 @@ package com.raikerdev.petproject.movies.ui.main
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.raikerdev.petproject.movies.domain.Error
-import com.raikerdev.petproject.movies.domain.toError
-import com.raikerdev.petproject.movies.domain.Movie
-import com.raikerdev.petproject.movies.usecases.GetPopularMoviesUseCase
-import com.raikerdev.petproject.movies.usecases.RequestPopularMoviesUseCase
+import com.raikerdev.petproject.movies.data.toError
+import com.raikerdev.petproject.usecases.GetPopularMoviesUseCase
+import com.raikerdev.petproject.usecases.RequestPopularMoviesUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -40,8 +38,8 @@ class MainViewModel(
 
     data class UiState(
         val loading: Boolean = false,
-        val movies: List<Movie>? = null,
-        val error: Error? = null
+        val movies: List<com.raikerdev.petproject.domain.Movie>? = null,
+        val error: com.raikerdev.petproject.domain.Error? = null
     )
 }
 

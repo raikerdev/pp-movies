@@ -39,6 +39,9 @@ android {
 }
 
 dependencies {
+    implementation(project(":usecases"))
+    implementation(project(":data"))
+    implementation(project(":domain"))
 
     implementation(libs.bundles.core)
     implementation(libs.bundles.lifecycle)

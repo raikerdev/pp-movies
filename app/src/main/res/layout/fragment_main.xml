@@ -5,7 +5,7 @@
 
     <data>
         <import type="java.util.List"/>
-        <import type="com.raikerdev.petproject.movies.domain.Movie"/>
+        <import type="com.raikerdev.petproject.domain.Movie"/>
         <variable
             name="loading"
             type="Boolean" />

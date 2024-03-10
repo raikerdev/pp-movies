@@ -4,10 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <import type="com.raikerdev.petproject.movies.domain.Movie"/>
+        <import type="com.raikerdev.petproject.domain.Movie"/>
         <variable
             name="movie"
-            type="Movie" />
+            type="com.raikerdev.petproject.domain.Movie" />
     </data>
 
     <LinearLayout
