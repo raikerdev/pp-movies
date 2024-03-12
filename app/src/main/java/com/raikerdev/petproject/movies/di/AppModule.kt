@@ -14,7 +14,6 @@ import com.raikerdev.petproject.movies.data.database.MovieRoomDataSource
 import com.raikerdev.petproject.movies.data.server.MovieServerDataSource
 import dagger.Module
 import dagger.Provides
-import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -22,7 +21,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    @Named("apiKey")
+    @ApiKey
     fun provideApiKey(app: Application): String = app.getString(R.string.api_key)
 
     @Provides
@@ -34,7 +33,7 @@ object AppModule {
     ).build()
 
     @Provides
-    fun provideRemoteDataSource(@Named("apiKey") apiKey: String): MovieRemoteDataSource =
+    fun provideRemoteDataSource(@ApiKey apiKey: String): MovieRemoteDataSource =
         MovieServerDataSource(apiKey)
 
     @Provides
