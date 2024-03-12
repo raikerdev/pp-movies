@@ -14,4 +14,7 @@ dependencies {
 
     implementation(libs.kotlinx.coroutines)
     implementation(libs.javax.inject)
+
+    testImplementation(libs.bundles.unitTest)
+
 }
