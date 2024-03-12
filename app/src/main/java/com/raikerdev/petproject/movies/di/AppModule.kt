@@ -12,6 +12,7 @@ import com.raikerdev.petproject.movies.data.PlayServicesLocationDataSource
 import com.raikerdev.petproject.movies.data.database.MovieDatabase
 import com.raikerdev.petproject.movies.data.database.MovieRoomDataSource
 import com.raikerdev.petproject.movies.data.server.MovieServerDataSource
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -33,19 +34,23 @@ object AppModule {
     ).build()
 
     @Provides
-    fun provideRemoteDataSource(@ApiKey apiKey: String): MovieRemoteDataSource =
-        MovieServerDataSource(apiKey)
+    @Singleton
+    fun provideMovieDao(db:MovieDatabase) = db.movieDao()
 
-    @Provides
-    fun provideLocalDataSource(db: MovieDatabase): MovieLocalDataSource =
-        MovieRoomDataSource(db.movieDao())
 
-    @Provides
-    fun provideLocationDataSource(app: Application): LocationDataSource =
-        PlayServicesLocationDataSource(app)
+}
 
-    @Provides
-    fun providePermissionChecker(app: Application): PermissionChecker =
-        AndroidPermissionChecker(app)
+@Module
+abstract class AppDataModule {
+    @Binds
+    abstract fun bindRemoteDataSource(remoteDataSource: MovieServerDataSource): MovieRemoteDataSource
 
+    @Binds
+    abstract fun bindLocalDataSource(localDataSource: MovieRoomDataSource): MovieLocalDataSource
+
+    @Binds
+    abstract fun bindLocationDataSource(locationDataSource: PlayServicesLocationDataSource): LocationDataSource
+
+    @Binds
+    abstract fun bindPermissionChecker(permissionChecker: AndroidPermissionChecker): PermissionChecker
 }

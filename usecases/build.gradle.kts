@@ -13,4 +13,5 @@ dependencies {
     implementation(project(":data"))
 
     implementation(libs.kotlinx.coroutines)
+    implementation(libs.javax.inject)
 }

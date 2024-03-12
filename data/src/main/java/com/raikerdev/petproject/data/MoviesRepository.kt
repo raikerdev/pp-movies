@@ -6,8 +6,9 @@ import com.raikerdev.petproject.domain.Error
 import com.raikerdev.petproject.domain.Movie
 
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class MoviesRepository(
+class MoviesRepository @Inject constructor(
     private val regionRepository: RegionRepository,
     private val localDataSource: MovieLocalDataSource,
     private val remoteDataSource: MovieRemoteDataSource,
