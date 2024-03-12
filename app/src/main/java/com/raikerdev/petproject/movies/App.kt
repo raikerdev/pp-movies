@@ -1,22 +1,20 @@
 package com.raikerdev.petproject.movies
 
 import android.app.Application
-import androidx.room.Room
-import com.raikerdev.petproject.movies.data.database.MovieDatabase
+import com.raikerdev.petproject.movies.di.AppComponent
+import com.raikerdev.petproject.movies.di.DaggerAppComponent
 
 class App: Application() {
 
-    lateinit var db: MovieDatabase
+    lateinit var component: AppComponent
         private set
 
     override fun onCreate() {
         super.onCreate()
 
-        db = Room.databaseBuilder(
-            this,
-            MovieDatabase::class.java,
-            "movie-db"
-        ).build()
+        component = DaggerAppComponent
+            .factory()
+            .create(this)
 
     }
 

@@ -52,6 +52,7 @@ dependencies {
     implementation(libs.glide.core)
     implementation(libs.arrow.core)
     implementation(libs.bundles.room)
+    implementation(libs.dagger)
     ksp(libs.bundles.compiler)
 
     testImplementation(libs.junit)
