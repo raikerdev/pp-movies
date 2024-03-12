@@ -1,6 +1,7 @@
 plugins {
     id("java-library")
     alias(libs.plugins.jetbrainsKotlinJvm)
+    alias(libs.plugins.googleDevtoolsKsp)
 }
 
 java {
@@ -13,4 +14,6 @@ dependencies {
 
     implementation(libs.kotlinx.coroutines)
     implementation(libs.arrow.core)
+    implementation(libs.bundles.koinCore)
+    ksp(libs.koin.ksp)
 }

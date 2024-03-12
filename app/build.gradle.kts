@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.jetbrainsKotlinKapt)
+    alias(libs.plugins.googleDevtoolsKsp)
     alias(libs.plugins.jetbrainsKotlinParcelize)
     alias(libs.plugins.androidxNavigation)
 }
@@ -51,9 +52,8 @@ dependencies {
     implementation(libs.glide.core)
     implementation(libs.arrow.core)
     implementation(libs.bundles.room)
-    implementation(libs.koin)
-    //noinspection KaptUsageInsteadOfKsp
-    kapt(libs.bundles.compiler)
+    implementation(libs.bundles.koinAndroid)
+    ksp(libs.bundles.compiler)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

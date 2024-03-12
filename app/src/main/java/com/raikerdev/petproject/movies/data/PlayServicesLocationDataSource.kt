@@ -8,8 +8,10 @@ import com.google.android.gms.location.LocationServices
 import com.raikerdev.petproject.data.datasource.LocationDataSource
 import com.raikerdev.petproject.movies.ui.common.getFromLocationCompat
 import kotlinx.coroutines.suspendCancellableCoroutine
+import org.koin.core.annotation.Factory
 import kotlin.coroutines.resume
 
+@Factory
 class PlayServicesLocationDataSource(application: Application): LocationDataSource {
     private val fusedLocationClient = LocationServices.getFusedLocationProviderClient(application)
     private val geocoder = Geocoder(application)

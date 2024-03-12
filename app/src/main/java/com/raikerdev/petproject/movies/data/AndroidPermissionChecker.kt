@@ -5,7 +5,9 @@ import android.app.Application
 import android.content.pm.PackageManager
 import androidx.core.content.ContextCompat
 import com.raikerdev.petproject.data.PermissionChecker
+import org.koin.core.annotation.Factory
 
+@Factory
 class AndroidPermissionChecker(private val application: Application): PermissionChecker {
 
     override fun check(permission: PermissionChecker.Permission): Boolean =

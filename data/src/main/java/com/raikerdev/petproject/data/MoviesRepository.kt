@@ -6,7 +6,9 @@ import com.raikerdev.petproject.domain.Error
 import com.raikerdev.petproject.domain.Movie
 
 import kotlinx.coroutines.flow.Flow
+import org.koin.core.annotation.Factory
 
+@Factory
 class MoviesRepository(
     private val regionRepository: RegionRepository,
     private val localDataSource: MovieLocalDataSource,

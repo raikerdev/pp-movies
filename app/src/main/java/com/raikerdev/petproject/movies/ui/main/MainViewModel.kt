@@ -1,7 +1,6 @@
 package com.raikerdev.petproject.movies.ui.main
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.raikerdev.petproject.movies.data.toError
 import com.raikerdev.petproject.usecases.GetPopularMoviesUseCase
@@ -12,7 +11,9 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.koin.android.annotation.KoinViewModel
 
+@KoinViewModel
 class MainViewModel(
     private val getPopularMoviesUseCase: GetPopularMoviesUseCase,
     private val requestPopularMoviesUseCase: RequestPopularMoviesUseCase
@@ -41,17 +42,4 @@ class MainViewModel(
         val movies: List<com.raikerdev.petproject.domain.Movie>? = null,
         val error: com.raikerdev.petproject.domain.Error? = null
     )
-}
-
-@Suppress("UNCHECKED_CAST")
-class MainViewModelFactory(
-    private val getPopularMoviesUseCase: GetPopularMoviesUseCase,
-    private val requestPopularMoviesUseCase: RequestPopularMoviesUseCase
-) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return MainViewModel(
-            getPopularMoviesUseCase,
-            requestPopularMoviesUseCase
-        ) as T
-    }
 }

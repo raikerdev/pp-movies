@@ -5,8 +5,11 @@ import com.raikerdev.petproject.data.datasource.MovieRemoteDataSource
 import com.raikerdev.petproject.domain.Error
 import com.raikerdev.petproject.domain.Movie
 import com.raikerdev.petproject.movies.data.tryCall
+import org.koin.core.annotation.Factory
+import org.koin.core.annotation.Named
 
-class MovieServerDataSource(private val apiKey: String) : MovieRemoteDataSource {
+@Factory
+class MovieServerDataSource(@Named("apiKey") private val apiKey: String) : MovieRemoteDataSource {
 
     override suspend fun findPopularMovies(region: String): Either<Error, List<Movie>> = tryCall {
         RemoteConnection.service.listPopularMovies(apiKey, region).results.toDomainModel()

@@ -1,7 +1,6 @@
 package com.raikerdev.petproject.movies.ui.detail
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.raikerdev.petproject.usecases.FindMovieUseCase
 import com.raikerdev.petproject.usecases.SwitchMovieFavoriteUseCase
@@ -9,7 +8,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import org.koin.android.annotation.KoinViewModel
 
+@KoinViewModel
 class DetailViewModel(
     movieId: Int,
     findMovieUseCase: FindMovieUseCase,
@@ -35,15 +36,4 @@ class DetailViewModel(
 
     data class UiState(val movie: com.raikerdev.petproject.domain.Movie? = null)
 
-}
-
-@Suppress("UNCHECKED_CAST")
-class DetailViewModelFactory(
-    private val movieId: Int,
-    private val findMovieUseCase: FindMovieUseCase,
-    private val switchMovieFavoriteUseCase: SwitchMovieFavoriteUseCase
-) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return DetailViewModel(movieId, findMovieUseCase, switchMovieFavoriteUseCase) as T
-    }
 }
