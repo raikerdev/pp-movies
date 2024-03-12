@@ -8,19 +8,21 @@ import com.raikerdev.petproject.movies.R
 import com.raikerdev.petproject.movies.databinding.FragmentMainBinding
 import com.raikerdev.petproject.movies.ui.common.app
 import com.raikerdev.petproject.movies.ui.common.launchAndCollect
+import javax.inject.Inject
 
 class MainFragment : Fragment(R.layout.fragment_main) {
 
-    private lateinit var component: MainFragmentComponent
+    @Inject
+    lateinit var vmFactory: MainViewModelFactory
 
-    private val viewModel: MainViewModel by viewModels { component.mainViewModelFactory }
+    private val viewModel: MainViewModel by viewModels { vmFactory }
 
     private val adapter = MoviesAdapter { mainState.onMovieClicked(it) }
     private lateinit var mainState: MainState
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        component = app.component.plus(MainFragmentModule())
+        app.component.inject(this)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
