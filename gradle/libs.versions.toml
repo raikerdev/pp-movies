@@ -21,6 +21,8 @@ arrow = "1.2.3"
 jetbrainsKotlinJvm = "1.9.0"
 coroutines = "1.8.0"
 ksp = "1.9.23-1.0.19"
+hilt = "2.48.1"
+javaxInject = "1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -55,13 +57,17 @@ google-plaServices = { group = "com.google.android.gms", name = "play-services-l
 kotlinx-coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
 arrow-core = { group = "io.arrow-kt", name = "arrow-core", version.ref = "arrow" }
 
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
+javax-inject = { group = "javax.inject", name = "javax.inject", version.ref = "javaxInject" }
+
 [bundles]
 core = ["androidx-core-ktx", "androidx-constraintlayout", "androidx-activity", "androidx-activity-ktx", "androidx-appcompat", "material", "androidx-recyclerView"]
 lifecycle = ["androidx-lifecycle", "androidx-viewmodel"]
 room = ["androidx-room", "androidx-room-ktx"]
 navigation = ["androidx-navigation", "androidx-navigation-fragment"]
 retrofit  = ["retrofit-interceptor", "retrofit-core", "retrofit-converter"]
-compiler = ["glide-compiler","androidx-room-compiler"]
+compiler = ["glide-compiler", "androidx-room-compiler", "hilt-compiler"]
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -71,3 +77,4 @@ jetbrainsKotlinParcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", versi
 androidxNavigation = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigation"}
 jetbrainsKotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
 googleDevtoolsKsp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+googleDaggerHilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt"  }

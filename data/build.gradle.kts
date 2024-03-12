@@ -13,4 +13,5 @@ dependencies {
 
     implementation(libs.kotlinx.coroutines)
     implementation(libs.arrow.core)
+    implementation(libs.javax.inject)
 }

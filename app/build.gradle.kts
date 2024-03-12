@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.googleDevtoolsKsp)
     alias(libs.plugins.jetbrainsKotlinParcelize)
     alias(libs.plugins.androidxNavigation)
+    alias(libs.plugins.googleDaggerHilt)
 }
 
 android {
@@ -52,6 +53,7 @@ dependencies {
     implementation(libs.glide.core)
     implementation(libs.arrow.core)
     implementation(libs.bundles.room)
+    implementation(libs.hilt.android)
     ksp(libs.bundles.compiler)
 
     testImplementation(libs.junit)

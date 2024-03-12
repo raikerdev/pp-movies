@@ -7,4 +7,5 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinParcelize) apply false
     alias(libs.plugins.androidxNavigation) apply false
     alias(libs.plugins.jetbrainsKotlinJvm) apply false
+    alias(libs.plugins.googleDaggerHilt) apply false
 }

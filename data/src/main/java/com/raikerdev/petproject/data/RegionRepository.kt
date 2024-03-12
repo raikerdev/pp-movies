@@ -1,8 +1,9 @@
 package com.raikerdev.petproject.data
 
 import com.raikerdev.petproject.data.datasource.LocationDataSource
+import javax.inject.Inject
 
-class RegionRepository(
+class RegionRepository @Inject constructor(
     private val locationDataSource: LocationDataSource,
     private val permissionChecker: PermissionChecker
 ) {
