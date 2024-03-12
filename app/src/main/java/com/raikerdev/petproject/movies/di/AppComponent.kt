@@ -1,19 +1,21 @@
 package com.raikerdev.petproject.movies.di
 
 import android.app.Application
-import com.raikerdev.petproject.movies.ui.detail.DetailViewModelFactory
-import com.raikerdev.petproject.movies.ui.main.MainViewModelFactory
+import com.raikerdev.petproject.movies.ui.detail.DetailFragmentComponent
+import com.raikerdev.petproject.movies.ui.detail.DetailFragmentModule
+import com.raikerdev.petproject.movies.ui.main.MainFragmentComponent
+import com.raikerdev.petproject.movies.ui.main.MainFragmentModule
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
 @Component(modules = [AppModule::class, UseCasesModule::class,
-    DataModule::class, ViewModelsModule::class])
+    DataModule::class])
 interface AppComponent {
 
-    val mainViewModelFactory: MainViewModelFactory
-    val detailViewModelFactory: DetailViewModelFactory
+    fun plus(mainFragmentModule: MainFragmentModule): MainFragmentComponent
+    fun plus(detailFragmentModule: DetailFragmentModule): DetailFragmentComponent
 
     @Component.Factory
     interface Factory {
