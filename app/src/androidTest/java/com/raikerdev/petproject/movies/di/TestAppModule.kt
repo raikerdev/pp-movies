@@ -1,9 +1,12 @@
 package com.raikerdev.petproject.movies.di
 
-import com.raikerdev.petproject.apptestshared.FakeMovieDao
+import android.app.Application
+import androidx.room.Room
 import com.raikerdev.petproject.apptestshared.FakeRemoteService
 import com.raikerdev.petproject.apptestshared.buildRemoteMovies
+import com.raikerdev.petproject.movies.R
 import com.raikerdev.petproject.movies.data.database.MovieDao
+import com.raikerdev.petproject.movies.data.database.MovieDatabase
 import com.raikerdev.petproject.movies.data.server.RemoteService
 import dagger.Module
 import dagger.Provides
@@ -20,11 +23,18 @@ object TestAppModule {
     @Provides
     @Singleton
     @ApiKey
-    fun provideApiKey(): String = "1234"
+    fun provideApiKey(app: Application): String = app.getString(R.string.api_key)
 
     @Provides
     @Singleton
-    fun provideMovieDao(): MovieDao = FakeMovieDao()
+    fun provideDatabase(app: Application) = Room.inMemoryDatabaseBuilder(
+        app,
+        MovieDatabase::class.java
+    ).build()
+
+    @Provides
+    @Singleton
+    fun provideMovieDao(db: MovieDatabase): MovieDao = db.movieDao()
 
     @Provides
     @Singleton
