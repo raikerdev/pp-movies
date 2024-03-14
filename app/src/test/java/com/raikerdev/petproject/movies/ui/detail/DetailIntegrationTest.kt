@@ -4,8 +4,8 @@ import app.cash.turbine.test
 import com.raikerdev.petproject.movies.CoroutinesTestRule
 import com.raikerdev.petproject.movies.data.database.DbMovie
 import com.raikerdev.petproject.movies.data.server.RemoteMovie
-import com.raikerdev.petproject.movies.ui.buildDatabaseMovies
-import com.raikerdev.petproject.movies.ui.buildRepositoryWith
+import com.raikerdev.petproject.apptestshared.buildDatabaseMovies
+import com.raikerdev.petproject.apptestshared.buildRepositoryWith
 import com.raikerdev.petproject.movies.ui.detail.DetailViewModel.UiState
 import com.raikerdev.petproject.usecases.FindMovieUseCase
 import com.raikerdev.petproject.usecases.SwitchMovieFavoriteUseCase

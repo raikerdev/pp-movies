@@ -8,4 +8,5 @@ plugins {
     alias(libs.plugins.androidxNavigation) apply false
     alias(libs.plugins.jetbrainsKotlinJvm) apply false
     alias(libs.plugins.googleDaggerHilt) apply false
+    alias(libs.plugins.androidLibrary) apply false
 }

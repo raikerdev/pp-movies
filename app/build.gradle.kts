@@ -54,13 +54,17 @@ dependencies {
     implementation(libs.arrow.core)
     implementation(libs.bundles.room)
     implementation(libs.hilt.android)
+    testImplementation(project(":appTestShared"))
     ksp(libs.bundles.compiler)
 
     testImplementation(libs.bundles.unitTest)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.turbine)
 
+    androidTestImplementation(project(":appTestShared"))
     androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.espresso.contrib)
+    androidTestImplementation(libs.androidx.test.runner)
+    androidTestImplementation(libs.androidx.test.rules)
 
 }

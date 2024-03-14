@@ -25,7 +25,9 @@ hilt = "2.51"
 javaxInject = "1"
 mockito = "5.11.0"
 mockitoKotlin = "5.2.1"
-turbine = "0.7.0"
+turbine = "0.13.0"
+testRunner = "1.5.2"
+testRules = "1.5.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -45,8 +47,11 @@ androidx-room-ktx = { group = "androidx.room", name  = "room-ktx", version.ref =
 androidx-room-compiler = { group = "androidx.room", name  = "room-compiler", version.ref = "room"}
 
 junit = { group = "junit", name = "junit", version.ref = "junit" }
-androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
-androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-junit = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "junitVersion" }
+androidx-espresso-contrib = { group = "androidx.test.espresso", name = "espresso-contrib", version.ref = "espressoCore" }
+
+androidx-test-runner = { group = "androidx.test", name  = "runner", version.ref = "testRunner"}
+androidx-test-rules = { group = "androidx.test", name  = "rules", version.ref = "testRules"}
 
 mockito-core = { group = "org.mockito", name = "mockito-core", version.ref = "mockito" }
 mockito-kotlin = { group = "org.mockito.kotlin", name = "mockito-kotlin", version.ref = "mockitoKotlin" }
@@ -88,3 +93,4 @@ androidxNavigation = { id = "androidx.navigation.safeargs.kotlin", version.ref =
 jetbrainsKotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
 googleDevtoolsKsp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 googleDaggerHilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt"  }
+androidLibrary = { id = "com.android.library", version.ref = "agp" }

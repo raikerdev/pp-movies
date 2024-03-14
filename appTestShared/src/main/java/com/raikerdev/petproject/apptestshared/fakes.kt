@@ -1,4 +1,4 @@
-package com.raikerdev.petproject.movies.ui
+package com.raikerdev.petproject.apptestshared
 
 import com.raikerdev.petproject.data.PermissionChecker
 import com.raikerdev.petproject.data.datasource.LocationDataSource
