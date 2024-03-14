@@ -1,8 +1,8 @@
-package com.raikerdev.petproject.usecases
+package com.raikerdev.petproject.domain.test
 
 import com.raikerdev.petproject.domain.Movie
 
-internal val sampleMovie = Movie(
+val sampleMovie = Movie(
     0,
     "Title",
     "Overview",

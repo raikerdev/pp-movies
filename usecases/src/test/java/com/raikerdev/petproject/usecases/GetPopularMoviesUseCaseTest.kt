@@ -1,5 +1,6 @@
 package com.raikerdev.petproject.usecases
 
+import com.raikerdev.petproject.domain.test.sampleMovie
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert

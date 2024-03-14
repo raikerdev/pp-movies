@@ -3,7 +3,7 @@ package com.raikerdev.petproject.data
 import arrow.core.right
 import com.raikerdev.petproject.data.datasource.MovieLocalDataSource
 import com.raikerdev.petproject.data.datasource.MovieRemoteDataSource
-import com.raikerdev.petproject.domain.Movie
+import com.raikerdev.petproject.domain.test.sampleMovie
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
@@ -95,17 +95,3 @@ class MoviesRepositoryTest {
     }
 
 }
-
-private val sampleMovie = Movie(
-    0,
-    "Title",
-    "Overview",
-    "01/01/2025",
-    "",
-    "",
-    "EN",
-    "Title",
-    5.0,
-    5.1,
-    false
-)

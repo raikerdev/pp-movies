@@ -25,6 +25,7 @@ hilt = "2.51"
 javaxInject = "1"
 mockito = "5.11.0"
 mockitoKotlin = "5.2.1"
+turbine = "0.7.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -59,12 +60,15 @@ glide-compiler = { group = "com.github.bumptech.glide", name = "ksp", version.re
 
 google-plaServices = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServices" }
 
-kotlinx-coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
+kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
 arrow-core = { group = "io.arrow-kt", name = "arrow-core", version.ref = "arrow" }
 
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
 javax-inject = { group = "javax.inject", name = "javax.inject", version.ref = "javaxInject" }
+
+turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
 
 [bundles]
 core = ["androidx-core-ktx", "androidx-constraintlayout", "androidx-activity", "androidx-activity-ktx", "androidx-appcompat", "material", "androidx-recyclerView"]

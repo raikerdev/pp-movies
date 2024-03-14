@@ -56,7 +56,11 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.bundles.compiler)
 
-    testImplementation(libs.junit)
+    testImplementation(libs.bundles.unitTest)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.turbine)
+
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
 }

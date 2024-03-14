@@ -11,7 +11,7 @@ java {
 dependencies {
     implementation(project(":domain"))
 
-    implementation(libs.kotlinx.coroutines)
+    implementation(libs.kotlinx.coroutines.core)
     implementation(libs.arrow.core)
     implementation(libs.javax.inject)
 

@@ -1,6 +1,7 @@
 package com.raikerdev.petproject.usecases
 
 import com.raikerdev.petproject.data.MoviesRepository
+import com.raikerdev.petproject.domain.test.sampleMovie
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
 import org.mockito.kotlin.mock
