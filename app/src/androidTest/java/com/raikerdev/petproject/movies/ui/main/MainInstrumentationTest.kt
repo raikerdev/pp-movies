@@ -1,24 +1,33 @@
-package com.raikerdev.petproject.movies
+package com.raikerdev.petproject.movies.ui.main
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.rule.GrantPermissionRule
 import com.raikerdev.petproject.movies.ui.NavHostActivity
+import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Rule
 import org.junit.Test
 
+@ExperimentalCoroutinesApi
+@HiltAndroidTest
+
 class MainInstrumentationTest {
 
-    @get:Rule
+    @get:Rule(order = 0)
+    val hiltRule = HiltAndroidRule(this)
+
+    @get:Rule(order = 1)
     val locationPermissionRule: GrantPermissionRule = GrantPermissionRule.grant(
         "android.permission.ACCESS_COARSE_LOCATION"
     )
 
-    @get:Rule
+    @get:Rule(order = 2)
     val activityRule = ActivityScenarioRule(NavHostActivity::class.java)
 
     @Test
     fun test_it_works() {
-
+        Thread.sleep(2000)
     }
 
 }

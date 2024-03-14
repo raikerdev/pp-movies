@@ -19,7 +19,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.raikerdev.petproject.movies.di.HiltTestRunner"
     }
 
     buildTypes {
@@ -66,5 +66,7 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.contrib)
     androidTestImplementation(libs.androidx.test.runner)
     androidTestImplementation(libs.androidx.test.rules)
+    androidTestImplementation(libs.hilt.android.testing)
+    kspAndroidTest(libs.hilt.compiler)
 
 }
