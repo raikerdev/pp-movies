@@ -35,6 +35,11 @@ class AppModule {
 
     @Provides
     @Singleton
+    @ApiUrl
+    fun provideApiUrl(): String = "https://api.themoviedb.org/3/"
+
+    @Provides
+    @Singleton
     fun provideDatabase(app: Application) = Room.databaseBuilder(
         app,
         MovieDatabase::class.java,
@@ -47,14 +52,14 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideRemoteService(): RemoteService {
+    fun provideRemoteService(@ApiUrl apiUrl: String): RemoteService {
         val okHttpClient = HttpLoggingInterceptor().run {
             level = HttpLoggingInterceptor.Level.BODY
             OkHttpClient.Builder().addInterceptor(this).build()
         }
 
         val builder = Retrofit.Builder()
-            .baseUrl("https://api.themoviedb.org/3/")
+            .baseUrl(apiUrl)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()

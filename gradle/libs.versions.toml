@@ -56,7 +56,8 @@ androidx-test-rules = { group = "androidx.test", name  = "rules", version.ref = 
 mockito-core = { group = "org.mockito", name = "mockito-core", version.ref = "mockito" }
 mockito-kotlin = { group = "org.mockito.kotlin", name = "mockito-kotlin", version.ref = "mockitoKotlin" }
 
-retrofit-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp3"}
+okhttp3-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp3"}
+okhttp3-mockWebServer = { group = "com.squareup.okhttp3", name = "mockwebserver", version.ref = "okhttp3"}
 retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit"}
 retrofit-converter = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit"}
 
@@ -81,7 +82,7 @@ core = ["androidx-core-ktx", "androidx-constraintlayout", "androidx-activity", "
 lifecycle = ["androidx-lifecycle", "androidx-viewmodel"]
 room = ["androidx-room", "androidx-room-ktx"]
 navigation = ["androidx-navigation", "androidx-navigation-fragment"]
-retrofit  = ["retrofit-interceptor", "retrofit-core", "retrofit-converter"]
+retrofit  = ["okhttp3-interceptor", "retrofit-core", "retrofit-converter"]
 compiler = ["glide-compiler", "androidx-room-compiler", "hilt-compiler"]
 unitTest = ["junit", "mockito-core", "mockito-kotlin"]
 
