@@ -2,6 +2,8 @@ package com.raikerdev.petproject.movies.ui.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.raikerdev.petproject.domain.Error
+import com.raikerdev.petproject.domain.Movie
 import com.raikerdev.petproject.movies.data.toError
 import com.raikerdev.petproject.usecases.GetPopularMoviesUseCase
 import com.raikerdev.petproject.usecases.RequestPopularMoviesUseCase
@@ -33,14 +35,15 @@ class MainViewModel @Inject constructor(
 
     fun onUiReady() {
         viewModelScope.launch {
+            _state.value = _state.value.copy(loading = true)
             val error = requestPopularMoviesUseCase()
-            _state.update { it.copy(error = error) }
+            _state.value = _state.value.copy(loading = false, error = error)
         }
     }
 
     data class UiState(
         val loading: Boolean = false,
-        val movies: List<com.raikerdev.petproject.domain.Movie>? = null,
-        val error: com.raikerdev.petproject.domain.Error? = null
+        val movies: List<Movie>? = null,
+        val error: Error? = null
     )
 }

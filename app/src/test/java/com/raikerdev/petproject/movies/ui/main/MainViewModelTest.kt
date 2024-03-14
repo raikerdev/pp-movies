@@ -8,14 +8,15 @@ import com.raikerdev.petproject.usecases.GetPopularMoviesUseCase
 import com.raikerdev.petproject.usecases.RequestPopularMoviesUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.test.runCurrent
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert
-import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
+import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
 @ExperimentalCoroutinesApi
@@ -34,16 +35,12 @@ class MainViewModelTest {
 
     private val movies = listOf(sampleMovie.copy(1))
 
-    @Before
-    fun setUp() {
-        whenever(getPopularMoviesUseCase()).thenReturn(flowOf(movies))
-        vm = MainViewModel(getPopularMoviesUseCase, requestPopularMoviesUseCase)
-    }
-
     @Test
     fun `State is updated with current cached content immediately`() = runTest {
+        vm = buildViewModel()
+
         vm.state.test {
-            //Assert.assertEquals(UiState(), awaitItem())
+            Assert.assertEquals(UiState(), awaitItem())
             Assert.assertEquals(UiState(movies = movies), awaitItem())
             cancel()
         }
@@ -51,15 +48,30 @@ class MainViewModelTest {
 
     @Test
     fun `Progress is shown when screen start and hidden when it finishes requesting movies`() = runTest {
-
+        vm = buildViewModel()
         vm.onUiReady()
 
         vm.state.test {
+            Assert.assertEquals(UiState(), awaitItem())
             Assert.assertEquals(UiState(movies = movies), awaitItem())
             Assert.assertEquals(UiState(movies = movies, loading = true), awaitItem())
             Assert.assertEquals(UiState(movies = movies, loading = false), awaitItem())
             cancel()
         }
+    }
+
+    @Test
+    fun `Popular movies are requested when UI screen starts`() = runTest {
+        vm = buildViewModel()
+        vm.onUiReady()
+        runCurrent()
+
+        verify(requestPopularMoviesUseCase).invoke()
+    }
+
+    private fun buildViewModel(): MainViewModel {
+        whenever(getPopularMoviesUseCase()).thenReturn(flowOf(movies))
+        return MainViewModel(getPopularMoviesUseCase, requestPopularMoviesUseCase)
     }
 
 }
