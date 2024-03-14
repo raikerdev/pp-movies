@@ -1,56 +1,44 @@
 package com.raikerdev.petproject.movies.ui
 
-import arrow.core.Either
-import arrow.core.right
 import com.raikerdev.petproject.data.PermissionChecker
 import com.raikerdev.petproject.data.datasource.LocationDataSource
-import com.raikerdev.petproject.data.datasource.MovieLocalDataSource
-import com.raikerdev.petproject.data.datasource.MovieRemoteDataSource
-import com.raikerdev.petproject.domain.Error
-import com.raikerdev.petproject.domain.Movie
-import com.raikerdev.petproject.domain.test.sampleMovie
+import com.raikerdev.petproject.movies.data.database.DbMovie
+import com.raikerdev.petproject.movies.data.database.MovieDao
+import com.raikerdev.petproject.movies.data.server.RemoteMovie
+import com.raikerdev.petproject.movies.data.server.RemoteResult
+import com.raikerdev.petproject.movies.data.server.RemoteService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 
-val defaultFakeMovies = listOf(
-    sampleMovie.copy(id = 1),
-    sampleMovie.copy(id = 2),
-    sampleMovie.copy(id = 3),
-    sampleMovie.copy(id = 4)
-)
+class FakeMovieDao(movies: List<DbMovie> = emptyList()): MovieDao {
 
-class FakeLocalDataSource: MovieLocalDataSource {
+    private val inMemoryMovies = MutableStateFlow(movies)
+    private lateinit var findMovieFlow: MutableStateFlow<DbMovie>
 
-    val inMemoryMovies = MutableStateFlow<List<Movie>>(emptyList())
+    override fun getAll(): Flow<List<DbMovie>> = inMemoryMovies
 
-    override val movies = inMemoryMovies
-
-    private lateinit var findMovieFlow: MutableStateFlow<Movie>
-
-    override suspend fun isEmpty(): Boolean = movies.value.isEmpty()
-
-    override fun findById(id: Int): Flow<Movie> {
-        findMovieFlow = MutableStateFlow(inMemoryMovies.value.first{ it.id == id })
+    override fun findById(id: Int): Flow<DbMovie> {
+        findMovieFlow = MutableStateFlow(inMemoryMovies.value.first { it.id == id })
         return findMovieFlow
     }
 
-    override suspend fun save(movies: List<Movie>): Error? {
+    override suspend fun movieCount(): Int = inMemoryMovies.value.size
+
+    override suspend fun insertMovies(movies: List<DbMovie>) {
         inMemoryMovies.value = movies
-        if(::findMovieFlow.isInitialized) {
-            movies.firstOrNull() { it.id == findMovieFlow.value.id }?.let {
-                findMovieFlow.value = it
-            }
+
+        if (::findMovieFlow.isInitialized) {
+            movies.firstOrNull() { it.id == findMovieFlow.value.id }
+                ?.let { findMovieFlow.value = it }
         }
-        return null
     }
 
 }
 
-class FakeRemoteDataSource: MovieRemoteDataSource {
+class FakeRemoteService(private val movies: List<RemoteMovie> = emptyList()): RemoteService {
 
-    var movies = defaultFakeMovies
-
-    override suspend fun findPopularMovies(region: String): Either<Error, List<Movie>> = movies.right()
+    override suspend fun listPopularMovies(apiKey: String, region: String): RemoteResult =
+        RemoteResult(1, movies, 1, movies.size)
 
 }
 

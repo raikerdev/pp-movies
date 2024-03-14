@@ -1,15 +1,12 @@
 package com.raikerdev.petproject.movies.ui.main
 
 import app.cash.turbine.test
-import com.raikerdev.petproject.data.MoviesRepository
-import com.raikerdev.petproject.data.RegionRepository
-import com.raikerdev.petproject.domain.Movie
-import com.raikerdev.petproject.domain.test.sampleMovie
 import com.raikerdev.petproject.movies.CoroutinesTestRule
-import com.raikerdev.petproject.movies.ui.FakeLocalDataSource
-import com.raikerdev.petproject.movies.ui.FakeLocationDataSource
-import com.raikerdev.petproject.movies.ui.FakePermissionChecker
-import com.raikerdev.petproject.movies.ui.FakeRemoteDataSource
+import com.raikerdev.petproject.movies.data.database.DbMovie
+import com.raikerdev.petproject.movies.data.server.RemoteMovie
+import com.raikerdev.petproject.movies.ui.buildDatabaseMovies
+import com.raikerdev.petproject.movies.ui.buildRemoteMovies
+import com.raikerdev.petproject.movies.ui.buildRepositoryWith
 import com.raikerdev.petproject.movies.ui.main.MainViewModel.UiState
 import com.raikerdev.petproject.usecases.GetPopularMoviesUseCase
 import com.raikerdev.petproject.usecases.RequestPopularMoviesUseCase
@@ -27,7 +24,7 @@ class MainIntegrationTest {
 
     @Test
     fun `Data is loaded from server when local source is empty`() = runTest {
-        val remoteData = listOf(sampleMovie.copy(1), sampleMovie.copy(2))
+        val remoteData = buildRemoteMovies(4, 5, 6)
         val vm = buildViewModelWith(
             localData = emptyList(),
             remoteData = remoteData
@@ -40,15 +37,20 @@ class MainIntegrationTest {
             Assert.assertEquals(UiState(movies = emptyList()), awaitItem())
             Assert.assertEquals(UiState(movies = emptyList(), loading = true), awaitItem())
             Assert.assertEquals(UiState(movies = emptyList(), loading = false), awaitItem())
-            Assert.assertEquals(UiState(movies = remoteData, loading = false), awaitItem())
+
+            val movies = awaitItem().movies!!
+            Assert.assertEquals("Title 4", movies[0].title)
+            Assert.assertEquals("Title 5", movies[1].title)
+            Assert.assertEquals("Title 6", movies[2].title)
+
             cancel()
         }
     }
 
     @Test
     fun `Data is loaded from local source when available`() = runTest {
-        val localData = listOf(sampleMovie.copy(10), sampleMovie.copy(11))
-        val remoteData = listOf(sampleMovie.copy(1), sampleMovie.copy(2))
+        val localData = buildDatabaseMovies(1, 2, 3)
+        val remoteData = buildRemoteMovies(4, 5, 6)
         val vm = buildViewModelWith(
             localData = localData,
             remoteData = remoteData
@@ -56,23 +58,22 @@ class MainIntegrationTest {
 
         vm.state.test {
             Assert.assertEquals(UiState(), awaitItem())
-            Assert.assertEquals(UiState(movies = localData), awaitItem())
+
+            val movies = awaitItem().movies!!
+            Assert.assertEquals("Title 1", movies[0].title)
+            Assert.assertEquals("Title 2", movies[1].title)
+            Assert.assertEquals("Title 3", movies[2].title)
+
             cancel()
         }
 
     }
 
     private fun buildViewModelWith(
-        localData: List<Movie> = emptyList(),
-        remoteData: List<Movie> = emptyList()
+        localData: List<DbMovie> = emptyList(),
+        remoteData: List<RemoteMovie> = emptyList()
     ): MainViewModel {
-        val locationDataSource = FakeLocationDataSource()
-        val permissionChecker = FakePermissionChecker()
-        val regionRepository = RegionRepository(locationDataSource, permissionChecker)
-
-        val localDataSource = FakeLocalDataSource().apply { movies.value = localData }
-        val remoteDataSource = FakeRemoteDataSource().apply { movies = remoteData }
-        val movieRepository = MoviesRepository(regionRepository, localDataSource, remoteDataSource)
+        val movieRepository = buildRepositoryWith(localData, remoteData)
 
         val getPopularMoviesUseCase = GetPopularMoviesUseCase(movieRepository)
         val requestPopularMoviesUseCase = RequestPopularMoviesUseCase(movieRepository)
