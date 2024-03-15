@@ -52,20 +52,21 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideRemoteService(@ApiUrl apiUrl: String): RemoteService {
-        val okHttpClient = HttpLoggingInterceptor().run {
-            level = HttpLoggingInterceptor.Level.BODY
-            OkHttpClient.Builder().addInterceptor(this).build()
-        }
+    fun provideOkHttpClient(): OkHttpClient = HttpLoggingInterceptor().run {
+        level = HttpLoggingInterceptor.Level.BODY
+        OkHttpClient.Builder().addInterceptor(this).build()
+    }
 
-        val builder = Retrofit.Builder()
+    @Provides
+    @Singleton
+    fun provideRemoteService(@ApiUrl apiUrl: String, okHttpClient: OkHttpClient): RemoteService =
+        Retrofit.Builder()
             .baseUrl(apiUrl)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+            .create()
 
-        return builder.create()
-    }
 }
 
 @Module
